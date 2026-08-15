@@ -3,202 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meyerhoff Scholars Program Analysis - Unofficial Archive</title>
+    <title id="tab-title">The Hrabowski-Baker Meyerhoff Model</title>
     <style>
+        :root {
+            --notice-bg: #dc2626;
+            --header-bg: #1e3a8a;
+            --primary-text: #ffffff;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --accent-critique: #b91c1c;
+            --accent-defense: #15803d;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg);
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f9f9f9;
         }
-        .disclaimer-banner {
-            background-color: #d9534f;
-            color: white;
+
+        .legal-notice {
+            background-color: var(--notice-bg);
+            color: var(--primary-text);
             text-align: center;
-            padding: 15px 20px;
-            font-weight: bold;
-            font-size: 14px;
-            border-bottom: 3px solid #b52b27;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-bottom: 4px solid rgba(0,0,0,0.1);
         }
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+
+        .hero-header {
+            background-color: var(--header-bg);
+            color: var(--primary-text);
+            padding: 3rem 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 30px;
-            border-radius: 5px;
-            margin-bottom: 30px;
+
+        .hero-header h1 {
+            font-size: 2.25rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
         }
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 28px;
-        }
-        header p {
+
+        .hero-header p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
             margin: 0;
-            font-size: 16px;
-            opacity: 0.9;
+            line-height: 1.6;
         }
-        .matrix-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem 1rem;
         }
-        .matrix-table th, .matrix-table td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-            vertical-align: top;
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .matrix-table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
+
+        .component-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            padding: 2rem;
+            border-left: 6px solid var(--header-bg);
         }
-        .matrix-table tr:nth-child(even) {
-            background-color: #fdfdfd;
+
+        .component-title {
+            font-size: 1.4rem;
+            color: var(--header-bg);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
         }
-        .pillar-name {
-            font-weight: bold;
-            color: #2c3e50;
-            width: 20%;
+
+        .description {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
         }
-        .critique-text {
-            color: #555;
-            width: 40%;
+
+        .analysis-box {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 1rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid #e2e8f0;
         }
-        .defense-text {
-            color: #27ae60;
-            font-weight: 500;
-            width: 40%;
+
+        @media (min-width: 768px) {
+            .analysis-box {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .critique-section {
+            background-color: #fef2f2;
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-critique);
+        }
+
+        .critique-section h4 {
+            color: var(--accent-critique);
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .defense-section {
+            background-color: #f0fdf4;
+            padding: 1rem 1.25rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-defense);
+        }
+
+        .defense-section h4 {
+            color: var(--accent-defense);
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .critique-section p, .defense-section p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Legal Anchor Script -->
-    <div id="legal-disclaimer" class="disclaimer-banner">
-        This is an unofficial, independent educational archive. Loading system configuration...
+    <div class="legal-notice">
+        Legal Notice: This is an unofficial, independent educational reference archive evaluating the shared leadership models of the Meyerhoff Scholars Program. This platform maintains no official affiliation with the program creators, UMBC, or external foundations.
+    </div>
+
+    <div class="hero-header">
+        <h1 id="main-heading">The Hrabowski-Baker Meyerhoff Model: 13 Pillars Examined</h1>
+        <p id="main-subtitle">This universal reference layout analyzes the 13 core tenets of the Meyerhoff Scholars Program overseen jointly by Dr. Freeman Hrabowski III and Executive Director Emerita Earnestine Baker. It presents an academic debate breakdown evaluating standard external critiques alongside validated institutional defenses.</p>
     </div>
 
     <div class="container">
-        <header>
-            <h1 id="page-title">The Meyerhoff Educational Model Analysis</h1>
-            <p id="page-intro">
-                This public educational archive provides a rigorous point-counterpoint analysis of the 13 institutional pillars that comprise the Meyerhoff Scholars Program model.
-            </p>
-        </header>
+        <div class="matrix-grid">
 
-        <main>
-            <table class="matrix-table">
-                <thead>
-                    <tr>
-                        <th>Program Component</th>
-                        <th>Common Academic Critique</th>
-                        <th>How to Answer the Critics (The Institutional Defense)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="pillar-name">1. Financial Scholarships</td>
-                        <td class="critique-text">Merit-based target funding can be viewed as elitist, potentially pulling resource allocation away from struggling humanities tracks.</td>
-                        <td class="defense-text">Complete financial peace of mind is statistically proven to eliminate systemic retention gaps in high-attrition STEM majors.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">2. Recruitment Weekend</td>
-                        <td class="critique-text">The heavy selection filtering process isolates high school students who likely possessed the resources to succeed regardless.</td>
-                        <td class="defense-text">The weekend uniquely evaluates community commitment and psychological resilience, forging isolated individuals into a collaborative cohort.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">3. Summer Bridge Program</td>
-                        <td class="critique-text">The mandatory, intensive pre-college academic boot camp risks causing premature psychological burnout before standard classes begin.</td>
-                        <td class="defense-text">It actively recalibrates academic expectations, normalizes structural failure, and establishes vital peer support networks.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">4. Mandatory Study Groups</td>
-                        <td class="critique-text">Forced group structures can suppress independent hyper-focus or isolate non-traditional learning styles.</td>
-                        <td class="defense-text">Modern breakthrough scientific research is fundamentally collaborative; group reliance is a mandatory industry skill.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">5. Staff Academic Advising</td>
-                        <td class="critique-text">The continuous monitoring and strict performance tracking metrics can borders on paternalistic micromanagement.</td>
-                        <td class="defense-text">Proactive, intrusive advising captures early academic difficulties in week three rather than week twelve when it is too late.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">6. Staff Personal Counseling</td>
-                        <td class="critique-text">An ultra-focused, insular counseling setup risks separating participants from broader campus life and general student perspectives.</td>
-                        <td class="defense-text">Underrepresented students regularly face unique systemic pressures like imposter syndrome that general campus counseling structures lack specialized training to address.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">7. Summer Research Internships</td>
-                        <td class="critique-text">Fast-tracking students exclusively into early industrial clinical placements narrows early theoretical scientific exposure.</td>
-                        <td class="defense-text">Early clinical placement demystifies professional science and secures the publication credits required to comfortably gain elite Ph.D. admissions.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">8. Academic Year Research</td>
-                        <td class="critique-text">Balancing intense continuous laboratory hours alongside an elite STEM grade point average can be structurally unsustainable.</td>
-                        <td class="defense-text">It cultivates elite time-management capabilities while mapping abstract textbook concepts directly onto practical, real-world laboratory issues.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">9. Faculty Mentoring</td>
-                        <td class="critique-text">Traditional scientific mentoring relationships occasionally struggle to successfully address neurodivergent or non-traditional needs.</td>
-                        <td class="defense-text">The program intentionally trains and dynamically monitors faculty mentors to ensure they remain deeply and directly invested in minoritized student success.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">10. Peer Cohesion / Family</td>
-                        <td class="critique-text">The tight-knit "family" dynamic risks building an insular bubble, compounding stress if a student chooses to exit STEM fields.</td>
-                        <td class="defense-text">The chosen family framework serves as psychological armor against systemic microaggressions and isolation historically prevalent in predatory STEM environments.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">11. Family Involvement</td>
-                        <td class="critique-text">Intentionally involving external family units in monitoring progress challenges traditional standards of adult student privacy.</td>
-                        <td class="defense-text">First-generation households often lack familiarity with demanding Ph.D. pathways; educating the home base ensures a comprehensive, lifelong support mechanism.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">12. Alumni Networking</td>
-                        <td class="critique-text">The massive legacy directory creates a closed-loop environment that naturally favors specific pre-selected biomedical sectors.</td>
-                        <td class="defense-text">The legacy footprint intentionally widens access, creating generationally stable channels into top-tier research spaces historically unavailable to minority professionals.</td>
-                    </tr>
-                    <tr>
-                        <td class="pillar-name">13. Public/Private Funding</td>
-                        <td class="critique-text">Heavy corporate tech and federal foundation reliance risks allowing external funding entities to subtly guide long-term research mandates.</td>
-                        <td class="defense-text">Strategic public-private funding alliances ensure long-term program durability and operational security independent of unpredictable, fluctuating state university budgets.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </main>
+            <!-- 1. Recruitment -->
+            <div class="component-card">
+                <h2 class="component-title">1. Recruitment</h2>
+                <p class="description">Identifying and screening academically prepared students committed to postgraduate research careers through nominations and selection weekends.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>The selection process only recruits students who were already guaranteed to succeed.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>The weekend evaluates community commitment and emotional resilience, turning isolated geniuses into a collaborative cohort.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Financial Aid -->
+            <div class="component-card">
+                <h2 class="component-title">2. Financial Aid</h2>
+                <p class="description">Providing a four-year merit award contingent on maintaining a B average and fulfilling program requirements.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Merit-based funding is elitist and pulls money away from struggling humanities programs.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Financial peace of mind is statistically proven to close the minority retention gap in brutal, high-attrition STEM majors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Summer Bridge -->
+            <div class="component-card">
+                <h2 class="component-title">3. Summer Bridge</h2>
+                <p class="description">A mandatory six-week pre-freshman program featuring coursework, time management skills, and community building.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>The mandatory pre-college boot camp causes early psychological burnout.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>It strips away high school complacency, normalizes academic struggle, and builds a peer support network before day one of classes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Program Values -->
+            <div class="component-card">
+                <h2 class="component-title">4. Program Values</h2>
+                <p class="description">Emphasizing doctoral goals, high academic achievement, seeking help, peer support, and community service.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Imposing a strict set of behavioral expectations and mandatory community service places an unfair extracurricular burden on students already tackling rigorous STEM coursework.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Cultivating a shared value system prevents burnout by shifting the focus from hyper-individualized competition to collective uplift, ensuring students remain grounded and purpose-driven.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Study Groups -->
+            <div class="component-card">
+                <h2 class="component-title">5. Study Groups</h2>
+                <p class="description">Encouraging collaborative studying as a primary vehicle for success in STEM majors.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Forced group learning holds back hyper-focused, independent thinkers.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Modern breakthrough science is entirely collaborative; learning to thrive in a team is a mandatory industry skill.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Program Community -->
+            <div class="component-card">
+                <h2 class="component-title">6. Program Community</h2>
+                <p class="description">Creating a family-like support system with mandatory on-campus housing and regular family meetings.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>The tight-knit 'family' unit creates an insular groupthink environment.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>The 'family' dynamic acts as a psychological armor against the microaggressions and isolation minoritized students face in predatory STEM fields.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Personal Advising and Counseling -->
+            <div class="component-card">
+                <h2 class="component-title">7. Personal Advising and Counseling</h2>
+                <p class="description">Monitoring academic performance and addressing personal needs via dedicated advisors and directors.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Intense performance tracking borders on paternalistic micromanagement, while the insular counseling environment creates an isolated cultural bubble.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Proactive advising catches stumbles early, and specialized counseling addresses unique pressures like imposter syndrome that general campus staff lack training to handle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Tutoring -->
+            <div class="component-card">
+                <h2 class="component-title">8. Tutoring</h2>
+                <p class="description">Leveraging departmental and university resources to aim for high academic excellence.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Pushing high-achieving honors students to utilize tutoring services fosters dependency rather than building independent, self-guided problem-solving skills.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Normalizing tutoring removes the "deficit mindset" stigma of seeking help, teaching elite students that proactively leveraging institutional infrastructure is a strategic professional advantage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Summer Research Internships -->
+            <div class="component-card">
+                <h2 class="component-title">9. Summer Research Internships</h2>
+                <p class="description">Providing early, hands-on research experiences and networking opportunities through science and engineering internships.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Forcing early lab work narrows a student's exposure to broader theoretical paths.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Early exposure demystifies professional science and secures the publication credits required to beat out competitors for top Ph.D. slots.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Mentors -->
+            <div class="component-card">
+                <h2 class="component-title">10. Mentors</h2>
+                <p class="description">Pairing students with regional professionals and campus or international faculty researchers.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Traditional faculty mentorship models often fail neurodivergent or non-traditional needs.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>The program heavily vets and continuously trains faculty mentors to ensure they are actively invested in minority student success.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Faculty Involvement -->
+            <div class="component-card">
+                <h2 class="component-title">11. Faculty Involvement</h2>
+                <p class="description">Engaging department chairs and faculty across recruitment, teaching, mentoring, and events.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Expecting high-level research faculty to heavily participate in undergraduate social events and recruitment detracts from their primary laboratory and publication responsibilities.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Systemic faculty involvement intentionally breaks down the hierarchical gatekeeping culture of academia, bridging the gap between intimidating professors and underrepresented students.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Administrative Involvement & Public Support -->
+            <div class="component-card">
+                <h2 class="component-title">12. Administrative Involvement & Public Support</h2>
+                <p class="description">Securing multi-level university backing and external funding partnerships from federal and private foundations.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Relying on corporate tech donors allows outside entities to steer academic research.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>Corporate and federal partnerships ensure the program remains fully funded and sustainable independent of volatile university budget cuts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. Family Involvement -->
+            <div class="component-card">
+                <h2 class="component-title">13. Family Involvement</h2>
+                <p class="description">Keeping parents informed and integrated through special events and the Meyerhoff Parents Association.</p>
+                <div class="analysis-box">
+                    <div class="critique-section">
+                        <h4>Common Academic Critique</h4>
+                        <p>Involving parents in tracking crosses the line into a lack of student autonomy.</p>
+                    </div>
+                    <div class="defense-section">
+                        <h4>Programmatic Defense</h4>
+                        <p>First-generation families often don't understand the intense demands of a PhD track; educating the parents ensures a stable home support system.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
-        (function() {
-            // Detect current hostname
-            const hostname = window.location.hostname.toLowerCase();
-            
-            const disclaimerEl = document.getElementById('legal-disclaimer');
-            const titleEl = document.getElementById('page-title');
-            const introEl = document.getElementById('page-intro');
+        const currentURL = window.location.href.toLowerCase();
+        const referrerURL = document.referrer.toLowerCase();
 
-            // Evaluation states based on domain
-            if (hostname.includes('earnestinebaker.com')) {
-                disclaimerEl.innerHTML = '<strong>Legal Notice:</strong> This is an unofficial, independent educational archive analyzing the Meyerhoff Scholars Program administrative models managed by Director Emerita Earnestine Baker. This site is NOT affiliated with, authorized by, or endorsed by Earnestine Baker or UMBC.';
-                titleEl.innerText = 'The Baker-Meyerhoff Model: 13 Pillars Examined';
-                introEl.innerHTML = 'This educational archive evaluates the 13 institutional pillars of the Meyerhoff Scholars Program—an elite STEM diversity framework executed, managed, and overseen for decades under the direct administrative leadership of <strong>Director Emerita Earnestine Baker</strong>. Below is a comprehensive debate matrix outlining common academic critiques alongside the programmatic logic used to answer critics.';
-            } else if (hostname.includes('freemanhrabowski.com')) {
-                disclaimerEl.innerHTML = '<strong>Legal Notice:</strong> This is an unofficial, independent educational archive analyzing the 13 pillars of the Meyerhoff Scholars Program founded by Dr. Freeman Hrabowski III. This site is NOT affiliated with, authorized by, or endorsed by Dr. Hrabowski, UMBC, or the Howard Hughes Medical Institute (HHMI).';
-                titleEl.innerText = 'The Hrabowski-Meyerhoff Model: 13 Pillars Examined';
-                introEl.innerHTML = 'This educational archive evaluates the 13 institutional pillars of the Meyerhoff Scholars Program—an elite STEM diversity framework co-founded, championed, and overseen during the historic 30-year presidency of <strong>Dr. Freeman Hrabowski III</strong>. Below is a comprehensive debate matrix outlining common academic critiques alongside the programmatic logic used to answer critics.';
-            } else {
-                // Fallback for local testing or secondary hostnames (e.g., GitHub Pages development link)
-                disclaimerEl.innerHTML = '<strong>Legal Notice:</strong> This is an unofficial, independent educational reference archive evaluating the shared leadership models of the Meyerhoff Scholars Program. This platform maintains no official affiliation with the program creators, UMBC, or external foundations.';
-                titleEl.innerText = 'The Hrabowski-Baker Meyerhoff Model: 13 Pillars Examined';
-                introEl.innerHTML = 'This universal reference layout analyzes the 13 core tenets of the Meyerhoff Scholars Program overseen jointly by <strong>Dr. Freeman Hrabowski III</strong> and <strong>Executive Director Emerita Earnestine Baker</strong>. It presents a academic debate breakdown evaluating standard external critiques alongside validated institutional defenses.';
-            }
-        })();
+        let targetBaseTitle = "The Hrabowski-Baker Meyerhoff Model";
+
+        if (currentURL.includes("freemanhrabowski") || referrerURL.includes("freemanhrabowski")) {
+            targetBaseTitle = "Dr. Freeman Hrabowski Model Matrix";
+        } else if (currentURL.includes("earnestinebaker") || referrerURL.includes("earnestinebaker")) {
+            targetBaseTitle = "Earnestine Baker Paradigm Matrix";
+        }
+
+        document.title = targetBaseTitle;
+
+        window.addEventListener('blur', () => {
+            document.title = "Don't Miss the Pillars! 📊";
+        });
+
+        window.addEventListener('focus', () => {
+            document.title = targetBaseTitle;
+        });
     </script>
 </body>
 </html>
